@@ -8,8 +8,8 @@ entity memory is
 port(
     M_add, M_inp : in std_logic_vector(15 downto 0);
     M_data : out std_logic_vector(15 downto 0);
-    clock, Mem_R, Mem_W : in std_logic;
-)
+    clock, Mem_R, Mem_W : in std_logic
+);
 
 architecture behav of memory is
 type array_of_vectors is array (2e16  downto 0) of std_logic_vector(15 downto 0);
@@ -41,3 +41,4 @@ memory_read: process(clock, Mem_R, M_add)
     end if;
     end process;
 end architecture behav;
+end entity memory;
