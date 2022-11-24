@@ -7,8 +7,8 @@ entity temporary_register is
         clock, reset in std_logic; 
         temp_write : in std_logic_vector(15 downto 0);
         temp_read : out std_logic_vector(15 downto 0);
-        temp_W : in std_logic;     
-    )
+        temp_W : in std_logic     
+    );
 end entity temporary_register;
 
 architecture behav of temporary_register is;
