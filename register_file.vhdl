@@ -8,8 +8,8 @@ port(
     clock, reset, PC_write_enable, RF_W : in std_logic;
     A1, A2, A3 : in std_logic_vector(2 downto 0);
     D3, PC_write : in std_logic_vector(15 downto 0);
-    D1, D2, PC_read : out std_logic_vector(15 downto 0);
-)
+    D1, D2, PC_read : out std_logic_vector(15 downto 0)
+);
 end entity register_file;
 
 architecture behav of register_file is
