@@ -11,7 +11,7 @@ entity temporary_register is
     );
 end entity temporary_register;
 
-architecture behav of temporary_register is;
+architecture behav of temporary_register is
 begin 
 temp_writing : process(clock, reset, temp_write, temp_w)
     begin
