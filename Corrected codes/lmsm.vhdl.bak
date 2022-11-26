@@ -7,7 +7,7 @@ entity lmsm is
 	q:in std_logic;
 	clock:in std_logic;
 	r_add: out std_logic_vector(2 downto 0);
-	count:out integer);
+	count:out std_logic);
 end lmsm;
 
 architecture bhv of lmsm is
