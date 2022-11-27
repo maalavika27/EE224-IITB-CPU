@@ -21,9 +21,9 @@ architecture a1 of alu is
 
 	signal add: std_logic_vector(15 downto 0);
 	signal outp: std_logic_vector(15 downto 0);
-	
+	signal c_dummy : std_logic;
 begin
-	adder: adder_16bit port map(A=>A,B=>B,S=>add,C=>C);
+	adder: adder_16bit port map(A=>A,B=>B,S=>add,C=>C_dummy);
 	process(A,B,clock)
 	begin
 		if (clock'event and clock='1') then
@@ -31,6 +31,7 @@ begin
 				when "00" =>
 					X <= add;
 					outp <= add;
+					c <= c_dummy;
 					if (outp = "0000000000000000") then
 						Z<='1';
 					else
