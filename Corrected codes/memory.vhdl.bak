@@ -12,7 +12,7 @@ end entity
  memory;
 
 architecture behav of memory is
-type array_of_vectors is array (65536  downto 0) of std_logic_vector(15 downto 0);
+type array_of_vectors is array (2e16  downto 0) of std_logic_vector(15 downto 0);
 signal memory_storage : array_of_vectors := (others => "0000000000000000");
 begin
 memory_write: process(clock, Mem_W, M_inp, M_add)
