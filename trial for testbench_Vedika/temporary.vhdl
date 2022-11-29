@@ -15,6 +15,9 @@ architecture behav of temporary_register is
 signal dummy: std_logic_vector(15 downto 0);
 
 begin 
+
+temp_read <= dummy;
+
 -- writing is synchronous and teemp_W high enable
 temp_writing : process(temp_w)
     begin
@@ -31,7 +34,7 @@ temp_writing : process(temp_w)
 --            null;   
 --        end if;
 		      if (temp_W = '1') then
-                temp_read <= temp_write;
+                dummy <= temp_write;
             else
                 null;
             end if;

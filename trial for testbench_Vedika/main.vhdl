@@ -150,12 +150,12 @@ begin
 	lmsm_main: lmsm port map(t1_8_0,
 									 lmsm_op,lmsm_count);
 	--lmsm count has count_now value from lmsm component
-	m1: MUX_1X2_16BIT port map(t3_op,alu_x,a,m1_op);
+	m1: MUX_1X2_16BIT port map(alu_x,t3_op,a,m1_op);
 	m2: MUX_4x1_16BIT port map("0000000000000000",pc_op,t3_op,t2_op,b,c,m2_op);
-	m3: MUX_1X2_16BIT port map(t2_op,t3_op,s,m3_op);
+	m3: MUX_1X2_16BIT port map(t3_op,t2_op,s,m3_op);
 	m4: MUX_4x1_3BIT port map (t1_11_9,t1_5_3,t1_8_6,lmsm_op,e,f,y);
 	m5: MUX_4x1_16BIT port map("0000000000000000",t2_op,t3_op,t4_op,j,k,m5_op);
-	m6: MUX_1X2_16BIT port map(rf_d1,alu_x,g,m6_op);
+	m6: MUX_1X2_16BIT port map(alu_x,rf_d1,g,m6_op);
 	m7: MUX_4x1_16BIT port map(alu_x,rf_d2,rf_d1,dm_op1,h,i,m7_op);
 	m8: MUX_8X1_16BIT port map("0000000000000000","0000000000000000","0000000000000000",t3_op,t4_op,pc_op,t2_op,se7_op,r,l,m,m8_op);
 	m9: MUX_4x1_16BIT port map("0000000000000000",se10_op,t3_op,"0000000000000001",n,p,m9_op);
@@ -183,7 +183,7 @@ clk_process: process(clock,reset)
 end process;
 
 --Process for control signals
-output_process: process(state_present,alu_c,alu_z,t1_op,t3_op,t2_op,carry_present,zero_present,lmsm_count)
+output_process: process(state_present,alu_c,alu_z,t1_op,t3_op,t2_op,carry_present,zero_present,lmsm_count,t1_8_0)
 	begin
 		a<='0';
 		b<='0';
@@ -348,11 +348,9 @@ output_process: process(state_present,alu_c,alu_z,t1_op,t3_op,t2_op,carry_presen
 		end if;
 	when s9=>
 		c<='1';
-		k<='1';
 		mem_r<='1';
 		t3_w<='1';
 		sel<="11";
-		rf_w<='1';
 	when s10=>
 		c<='1';
 		mem_w<='1';
@@ -427,6 +425,9 @@ output_process: process(state_present,alu_c,alu_z,t1_op,t3_op,t2_op,carry_presen
 		g<='1';
 		m<='1';
 		sel<="00";
+	when s18=>
+		k<='1';
+		rf_w<='1';
 	when others=>
 		null;
 	end case;
@@ -506,7 +507,7 @@ state_transition: process(state_present,t1_op,lmsm_count,t1_8_0)
 		else null;
 		end if;
 	when s9=>
-		state_next<=s1;
+		state_next<=s18;
 	when s10=>
 		state_next<=s1;
 	when s11=>
@@ -542,10 +543,11 @@ state_transition: process(state_present,t1_op,lmsm_count,t1_8_0)
 		end if;
 	when s17=>
 		state_next<=s16;
+	when s18=>
+		state_next<=s1;
 	when others=>
 		null;
 	end case;
 end process;
 
 end bhv;
-	
