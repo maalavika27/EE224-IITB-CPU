@@ -157,7 +157,7 @@ begin
 	m6: MUX_1X2_16BIT port map(alu_x,rf_d1,g,m6_op);
 	m7: MUX_4x1_16BIT port map(alu_x,rf_d2,rf_d1,dm_op1,h,i,m7_op);
 	m8: MUX_8X1_16BIT port map("0000000000000000","0000000000000000","0000000000000000",t3_op,t4_op,pc_op,t2_op,se7_op,r,l,m,m8_op);
-	m9: MUX_4x1_16BIT port map("0000000000000000",se10_op,t3_op,"0000000000000001",n,p,m9_op);
+	m9: MUX_4x1_16BIT port map(se7_op,se10_op,t3_op,"0000000000000001",n,p,m9_op);
 	demux: DEMUX_1X2_16BIT port map(m_data,d,dm_op2,dm_op1);
 	
 --Breaking the t1_op signal into the required parts
@@ -395,6 +395,7 @@ output_process: process(state_present,alu_c,alu_z,t1_op,t3_op,t2_op,carry_presen
 			l<='1';
 			m<='1';
 			n<='1';
+			p<='1';
 			sel<="00";
 		end if;
 	when s14=>
