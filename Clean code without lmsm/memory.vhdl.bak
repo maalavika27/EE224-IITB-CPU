@@ -15,7 +15,7 @@ architecture behav of memory is
 
 -- address of any location in memory is 16 bit. so memory size is 2^16
 type array_of_vectors is array (65535 downto 0) of std_logic_vector(15 downto 0);
-signal memory_storage : array_of_vectors := (0 => "0111000010100010",1 => "0000000000000010",2 => "0000000000000011",3 => "0000000000000100",
+signal memory_storage : array_of_vectors := (0 => "1001000001000000",1 => "0000000000000010",2 => "0000000000000011",3 => "0000000000000100",
 4 => "0000000000000101",5 => "0000000000000110",6 => "0000000000000111",7 => "0000000000001000",8 => "0000000000001001",others => "0000000000000000");
 
 begin

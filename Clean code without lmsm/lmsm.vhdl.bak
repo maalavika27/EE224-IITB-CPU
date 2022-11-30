@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity lmsm is
 	port(r_add: out std_logic_vector(2 downto 0);
-		count:in integer range 0 to 8);
+		count:in integer);
 end lmsm;
 
 architecture bhv of lmsm is 
