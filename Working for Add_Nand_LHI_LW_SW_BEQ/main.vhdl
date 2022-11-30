@@ -219,6 +219,7 @@ output_process: process(state_present,alu_c,alu_z,t1_op,t3_op,t2_op,carry_presen
 		mem_r<='1';
 		pc_w<='1';
 		t1_w<='1';
+		t4_w<='1';
 		sel<="00";
 	when s2=>
 		h<='1';
